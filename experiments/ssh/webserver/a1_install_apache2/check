@@ -1,0 +1,9 @@
+#!/bin/bash
+echo "apache2 package installed... "
+if ( dpkg -l | grep apache2-mpm-prefork &> /dev/null ); then
+	echo 'ok'
+	true
+else
+	echo 'FAIL'
+	false
+fi
