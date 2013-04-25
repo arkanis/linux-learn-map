@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Linux-Map test</title>
+	<style>
+		body { font-family: sans-serif; font-size: small; }
+		#map { position: relative; width: 1500px; height: 500px; background-color: hsl(0, 0%, 90%); }
+		
+		article { position: absolute; width: 400px; margin: 0; padding: 9px; background-color: #fdf9e7; border: 1px solid #ecc813; border-radius: 5px; }
+		article > h1 { margin: 0; }
+		article > p { margin: 0.5em 0; }
+		article > p:last-child { margin-bottom: 0; }
+		
+		article#apache2 { left: 100px; top: 250px; }
+		article#website { left: 800px; top: 50px; }
+		
+		article.available {}
+		article.passed { border-color: green; background-color: hsl(120, 50%, 95%);}
+	</style>
+	<script src="jquery-1.9.1.min.js"></script>
+	<script src="raphael.js"></script>
+	<script>
+		$(document).ready(function(){
+			var map = $('#map');
+			var canvas = Raphael(map.get(0), map.width(), map.height());
+			var p = canvas.path("M 520 260 L 660 260 660 60 800 60");
+			p.attr({'stroke': '#ecc813', 'stroke-width': 4});
+			
+			$('button').click(function(){
+				$(this).closest('article').addClass('passed');
+			});
+		});
+	</script>
+</head>
+<body>
+<section id="map">
+
+<article id="website">
+	<h1>Eine eigene Webseite hosten</h1>
+	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+	<p>Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+	<button>check</button>
+</article>
+
+<article id="apache2">
+	<h1>Apache 2 installieren</h1>
+	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+	<p>Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+	<button>check</button>
+</article>
+
+</section>
+</body>
+</html>
