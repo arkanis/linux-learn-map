@@ -1,0 +1,25 @@
+Title: Controlling Apache 2 
+Points: 5
+Position: 50, 200
+
+Now your server acts as a web server. Try it out in a web browser like Firefox, you should get the text "It Works!". 
+<a href="http://linuxvmXXX.mi.hdm-stuttgart.de" target="_blank">http://linuxvmXXX.mi.hdm-stuttgart.de</a> (insert the number of your server)
+
+Find out how to control your Apache 2 server. 
+
+Commands hint:
+~~~
+# service apache
+# man apache2ctl
+~~~
+
+Create a text file called "apache.txt" in the home directory of the "root" user (/root/apache.txt) which describes the actions:
+
+* start
+* stop
+* restart
+
+Add the commands and configurations you learn in this session later.	 
+
+
+

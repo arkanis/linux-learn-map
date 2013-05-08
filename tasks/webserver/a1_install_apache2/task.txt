@@ -1,8 +1,41 @@
-Title: Apache 2 installieren
+Title: Install an Apache Webserver
 Points: 5
 Position: 50, 200
 
-foo bar
+## Introduction
 
-1. foo
-2. bar
+This document describes how to set up an Apache web server for serving documents (PHP & HTML sites, multimedia files etc.) over HTTP to a web browser. This is the base for the popular combination of Linux, Apache, MySQL, and PHP/Perl/Python which is called a "LAMP" system. The tutorial is tested on Debian 6.0 Squeeze.
+
+To work with this document you need
+
+* knowledge how to work on a UNIX command line (runn commands, find help, edit text files)
+* a Virtual Machine with DNS name like http://linuxvmXXX.mi.hdm-stuttgart.de
+* a Terminal that has access to linuxvmXXX.mi.hdm-stuttgart.de with HTTP and SSH (work from the PC Pool or with an OpenVPN connection)
+
+You might find the following documents helpful
+
+* <a href="https://help.ubuntu.com/12.04/serverguide/httpd.html" target="_blank">Ubuntu Server Guide</a>
+* <a href="http://en.wikipedia.org/wiki/Apache_HTTP_Server" target="_blank">Wikpedia: Apache</a>
+* <a href="http://httpd.apache.org/docs/2.2/" target="_blank">Apache manual</a>
+
+Login on your virtual machine
+~~~
+$ ssh root@linuxvmXXX.mi.hdm-stuttgart.de
+~~~
+ 
+Before you begin installing a new application, make sure that you have updated your server to the latest updates
+
+~~~
+# apt-get update
+# apt-get upgrade
+~~~
+
+## Install the main package
+
+In order to prevent memory problems in your virtual machine, change the Multi Processing Module we directly install the "prefork" mode (exchange for package "apache2-mpm-worker")
+~~~
+# apt-get install apache2-mpm-prefork
+~~~
+
+
+

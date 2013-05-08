@@ -1,0 +1,29 @@
+Title: Create a new Virtual Host
+Points: 5
+Position: 50, 200
+
+Create a new Virtual Host which listens to http://linuxvmXXXb.mi.hdm-stuttgart.de (the letter b is important) and prints out the text "Hello World Host".
+
+Hints:
+
+* Create a new Virtual Host file named /etc/apache2/sites-available/linuxvmXXX
+* A minimal Virtual Host looks like this. You need to make sure that the directories used are existing on your system.
+~~~
+<VirtualHost *:80>
+        ServerAdmin webmaster@example.org
+        ServerName linuxvmXXXb.mi.hdm-stuttgart.de
+        DocumentRoot "/srv/www/linuxvmXXXb/htdocs"
+        ErrorLog "/srv/www/linuxvmXXXb/log/error.log"
+        CustomLog "/srv/www/linuxvmXXXb/log/access.log" combined
+
+        # Possible values include: debug, info, notice, warn, error, crit,
+        # alert, emerg.
+        LogLevel warn
+</VirtualHost>
+~~~
+
+* Commands needed
+  * a2ensite
+  * service apache2 restart
+
+

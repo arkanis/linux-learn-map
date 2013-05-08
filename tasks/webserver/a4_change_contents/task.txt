@@ -1,0 +1,12 @@
+Title: Change Welcome Message
+Points: 5
+Position: 50, 200
+
+Two DNS Names have been set up for you. They point both to the IP Adress of your virtual machine
+
+* http://linuxvmXXX.mi.hdm-stuttgart.de
+* http://linuxvmXXXb.mi.hdm-stuttgart.de
+
+Change the welcome text of your web server http://linuxvmXXX.mi.hdm-stuttgart.de from "It works!" to "I made it work".
+
+Hints: The file is called "index.html" and lives in the DocumentRoot you found above.

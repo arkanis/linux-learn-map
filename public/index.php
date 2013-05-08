@@ -12,6 +12,7 @@ $dir_iterator = new RecursiveDirectoryIterator($tasks_dir);
 $files = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);
 
 $tasks = array();
+
 foreach($files as $file) {
 	// Skip everything that is not a check script
 	if ( $file->getBasename() != 'check' )
@@ -74,7 +75,9 @@ uasort($tasks, function($a, $b){
 			});
 		});
 	</script>
+<!--
 	<link rel="stylesheet" href="reset.css">
+-->
 	<style>
 		body { font-family: sans-serif; background: hsl(0, 0%, 90%); }
 		article { position: relative; overflow: hidden; margin: 1em 1em 2em 1em; padding: 0.5em; width: 40em;
@@ -133,6 +136,10 @@ uasort($tasks, function($a, $b){
 	<div class="console empty"></div>
 </article>
 <? endforeach ?>
+
+<?php
+print_r($_SERVER);
+?>
 
 </body>
 </html>

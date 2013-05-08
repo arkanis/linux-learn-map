@@ -1,5 +1,5 @@
 #!/bin/bash
-echo -n "apache2 package installed... "
+echo -n "apache2-mpm-prefork package installed... "
 if ( dpkg -l | grep apache2-mpm-prefork &> /dev/null ); then
 	echo "ok"
 	true

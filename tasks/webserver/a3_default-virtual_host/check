@@ -1,0 +1,40 @@
+#!/bin/bash
+
+ERROR=0
+if [ -f /root/apache.txt ]; then
+	echo "File exists /root/apache.txt... OK.<br>"
+	TEST1=`grep "/var/www" /root/apache.txt &>/dev/null; echo $?;`
+	TEST2=`grep "error.log" /root/apache.txt &>/dev/null; echo $?;`
+	TEST3=`grep www-data /root/apache.txt &>/dev/null; echo $?;`
+	TEST4=`grep /var/log/apache2 /root/apache.txt &>/dev/null; echo $?;`
+else
+	echo "File /root/apache.txt is missing... Error.<br>"
+	exit 1
+fi
+#echo "Tests: $TEST1 $TEST2 $TEST3"
+
+if [ "${TEST1}" -gt 0 ]; then
+	echo "Checking /root/apache.txt... DocumentRoot is missing<br>"
+	ERROR=$((${ERROR}+1))
+fi
+if [ "${TEST2}" -gt 0 ]; then
+	echo "Checking /root/apache.txt... ErrorLog is missing<br>"
+	ERROR=$(($ERROR+1))
+fi
+if [ "${TEST3}" -gt 0 ]; then
+	echo "Checking /root/apache.txt... APACHE_RUN_USER is missing<br>"
+	ERROR=$(($ERROR+1))
+fi
+if [ "${TEST4}" -gt 0 ]; then
+	echo "Checking /root/apache.txt... APACHE_LOG_DIR is missing<br>"
+	ERROR=$(($ERROR+1))
+fi
+
+
+if [ "${ERROR}" -gt 0 ]; then
+	echo "Please check your /root/apache.txt, ${ERROR} errors"
+	exit 1
+else
+	echo "Checking contents of /root/apache.txt... OK<br>"
+	exit 0
+fi

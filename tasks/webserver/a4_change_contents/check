@@ -1,0 +1,17 @@
+#!/bin/bash
+
+ERROR=0
+TEST1=`wget -O - --quiet http://localhost | grep "I made it" >/dev/null; echo $?;`
+if [ "${TEST1}" -gt 0 ]; then
+	echo "Checking http://localhost... Output not as expected.<br>"
+	ERROR=$((${ERROR}+1))
+fi
+
+
+if [ "${ERROR}" -gt 0 ]; then
+	echo "Please check http://localhost, ${ERROR} errors"
+	exit 1
+else
+	echo "Checking http://localhost... OK<br>"
+	exit 0
+fi

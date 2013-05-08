@@ -1,0 +1,25 @@
+Title: Apache default settings 
+Points: 5
+Position: 50, 200
+
+One instance of the Apache web server can serve multiple websites (e.g. www.example.org and www.another-example.org). Each website is called a "Virtual Host" and has a seperate configuration file, partly overriding global configuration directives.
+ 
+All configuration files of apache are located in "/etc/apache2"
+There is a Virtual Host called "default" provided when installing Apache which gives the "It Works" message. 
+
+Write the values and a short explanation of the following Apache configuration variables to your /root/apache.txt file
+ 
+* DocumentRoot
+* ErrorLog
+* APACHE_RUN_USER
+* APACHE_LOG_DIR
+
+Commands hint:
+~~~
+# grep -r PATTERN FILE 
+~~~
+
+
+
+
+

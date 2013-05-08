@@ -1,0 +1,34 @@
+#!/bin/bash
+
+if [ -f /root/apache.txt ]; then
+	echo "File exists /root/apache.txt... OK.<br>"
+	START=`grep start /root/apache.txt &>/dev/null; echo $?`
+	STOP=`grep stop /root/apache.txt &>/dev/null; echo $?`
+	RESTART=`grep restart /root/apache.txt &>/dev/null; echo $?`
+else
+	echo "File /root/apache.txt is missing... Error.<br>"
+	exit 1
+fi
+#echo "Tests: $START $STOP $RESTART"
+
+ERROR=0
+if [ "${START}" -gt 0 ]; then
+	echo "Checking /root/apache.txt... Description for 'start' is missing<br>"
+	ERROR=$((${ERROR}+1))
+fi
+if [ "${STOP}" -gt 0 ]; then
+	echo "Checking /root/apache.txt... Description for 'stop' is missing<br>"
+	ERROR=$(($ERROR+1))
+fi
+if [ "${RESTART}" -gt 0 ]; then
+	echo "Checking /root/apache.txt... Description for 'restart' is missing<br>"
+	ERROR=$(($ERROR+1))
+fi
+
+if [ "${ERROR}" -gt 0 ]; then
+	echo "Please check your /root/apache.txt, ${ERROR} errors."
+	exit 1
+else
+	echo "Checking contents of /root/apache.txt... OK<br>"
+	exit 0
+fi

@@ -1,9 +1,0 @@
-#!/bin/bash
-echo -n "apache2 stopped... "
-if ( netstat -tanp | grep apache2 &> /dev/null ); then
-	echo "FAIL"
-	false
-else
-	echo "ok"
-	true
-fi
