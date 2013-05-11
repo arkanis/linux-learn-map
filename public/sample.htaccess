@@ -1,0 +1,12 @@
+AuthType	basic
+AuthName	"Please log in"
+
+# File based authentication. Great for local development.
+#AuthBasicProvider	file
+#AuthUserFile	/path/to/htpasswd/file
+
+# LDAP authentication. Usefull to integrate into larger structures.
+#AuthBasicProvider	ldap
+#AuthLDAPURL	your-ldap-url
+
+Require	valid-user

@@ -1,1 +1,5 @@
+# Local backup copies from text editors
 *~
+# Authentication configuration (testing and production, we want nither in the repo)
+public/.htaccess
+local_users
