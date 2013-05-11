@@ -3,17 +3,17 @@
 /** 
  * Quick summary of usage:
  * 
- * Entry::find('*.post')
- * Entry::load('test.post')
- * Entry::save('test.post', array('Header' => 'value'), 'Some multiline content')
+ * Entity::find('*.post')
+ * Entity::load('test.post')
+ * Entity::save('test.post', array('Header' => 'value'), 'Some multiline content')
  * 
- * $entry->title
- * $entry->tags
- * $entry->tags_as_list
- * $entry->content
- * $entry->path
+ * $entity->title
+ * $entity->tags
+ * $entity->tags_as_list
+ * $entity->content
+ * $entity->path
  */
-class Entry
+class Entity
 {
 	/**
 	 * Loads the entity files matching the specified glob pattern.
@@ -22,28 +22,27 @@ class Entry
 	 * 	sort_with: The sort function used for the files. Can be anything that passes is_callable(). You can use 'rsort' (newest
 	 * 		first) or 'sort' (oldest first). Use `null` to skip sorting the paths.
 	 * 	limit: The max. number of entities to load. The paths are sorted before the limit is applied.
-	 * 	prepare_for_caching: If set to true every found entry will be prepared for caching by calculating everything.
 	 */
 	static function find($glob_pattern, $options = array())
 	{
-		$options = array_merge(array('sort_with' => 'rsort', 'prepare_for_caching' => false), $options);
+		$options = array_merge(array('sort_with' => 'rsort'), $options);
 		
-		$entry_files = glob($glob_pattern);
+		$entity_files = glob($glob_pattern);
 		if ( array_key_exists('sort_with', $options) and is_callable($options['sort_with']) )
-			$options['sort_with']($entry_files);
+			$options['sort_with']($entity_files);
 		
 		if ( array_key_exists('limit', $options) )
-			$entry_files = array_slice($entry_files, 0, $options['limit']);
+			$entity_files = array_slice($entity_files, 0, $options['limit']);
 		
-		$entries = array();
-		foreach($entry_files as $file)
-			$entries[] = self::load($file);
+		$entities = array();
+		foreach($entity_files as $file)
+			$entities[] = self::load($file);
 		
-		return $entries;
+		return $entities;
 	}
 	
 	/**
-	 * Loads the specified file and returns an entry object.
+	 * Loads the specified file and returns an entity object.
 	 * 
 	 * Returns `false` if the file couldn't be read.
 	 */
@@ -60,16 +59,16 @@ class Entry
 	}
 	
 	/**
-	 * Disassembles the specified entry file and returns its headers and content.
+	 * Disassembles the specified entity file and returns its headers and content.
 	 * 
 	 * Everything is returned without manipulation and therefore perfect to
-	 * reconstruct the entry again after a slight manipulation (e.g. adding a  new
+	 * reconstruct the entity again after a slight manipulation (e.g. adding a  new
 	 * header). This does not destroy any formatting (e.g. with whitespaces) the
 	 * user applied.
 	 * 
-	 * Note that this function does not return an Entry object. It always returns an
+	 * Note that this function does not return an Entity object. It always returns an
 	 * array with the first element being a list of header fields and the second
-	 * element the entry content. If the specified file does not exists both elements
+	 * element the entity content. If the specified file does not exists both elements
 	 * are set to false.
 	 */
 	static function analyze($path)
@@ -85,13 +84,13 @@ class Entry
 	}
 	
 	/**
-	 * Saves an entry at the specified path. $headers is expected to be an array of
+	 * Saves an entity at the specified path. $headers is expected to be an array of
 	 * header field name and header field value pairs. $content is the actual content
 	 * of the entry.
 	 * 
 	 * Example:
 	 * 
-	 * 	Entry::save('example.post', array('Name' => 'Example post'), 'Example content');
+	 * 	Entity::save('example.post', array('Name' => 'Example post'), 'Example content');
 	 */
 	static function save($path, $headers, $content)
 	{

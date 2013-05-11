@@ -1,7 +1,7 @@
 <?php
 
 $ROOT_DIR = dirname(__FILE__) . '/..';
-require_once($ROOT_DIR . '/include/config.php');
+require_once($ROOT_DIR . '/config.php');
 
 function run_script_on_server($script, $server, $user, $public_key_file, $private_key_file){
 	$con = @ssh2_connect($server);

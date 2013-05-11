@@ -1,9 +1,9 @@
 <?php
 
 $ROOT_DIR = dirname(__FILE__) . '/..';
-require_once($ROOT_DIR . '/include/config.php');
+require_once($ROOT_DIR . '/config.php');
 
-require_once($ROOT_DIR . '/include/entry.php');
+require_once($ROOT_DIR . '/include/entity.php');
 require_once($ROOT_DIR . '/include/markdown.php');
 require_once($ROOT_DIR . '/include/view_helpers.php');
 
@@ -21,7 +21,7 @@ foreach($files as $file) {
 	$check_script = $file->getRealpath();
 	$task_dir = dirname($check_script);
 	$id = substr($task_dir, strlen($tasks_dir) + 1);
-	$infos = Entry::load($task_dir . '/task.txt');
+	$infos = Entity::load($task_dir . '/task.txt');
 	if ($infos) {
 		$title = $infos->title;
 		$description = Markdown($infos->content);
@@ -136,10 +136,6 @@ uasort($tasks, function($a, $b){
 	<div class="console empty"></div>
 </article>
 <? endforeach ?>
-
-<?php
-print_r($_SERVER);
-?>
 
 </body>
 </html>
