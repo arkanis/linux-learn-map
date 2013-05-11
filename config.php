@@ -15,7 +15,7 @@ if (($handle = fopen($linuxvm_list, "r")) !== FALSE) {
 }
 
 $_CONFIG = array(
-	'tasks_dir' => $ROOT_DIR . '/tasks',
+	'tasks_dir' => $ROOT_DIR . '/exercises',
 	'server_auth' => array(
 		'server' => $server_target,
 		'user' => 'root',

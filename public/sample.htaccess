@@ -6,6 +6,7 @@ AuthName	"Please log in"
 #AuthUserFile	/path/to/htpasswd/file
 
 # LDAP authentication. Usefull to integrate into larger structures.
+# Remember to enable the authnz_ldap module (a2enmod authnz_ldap).
 #AuthBasicProvider	ldap
 #AuthLDAPURL	your-ldap-url
 
