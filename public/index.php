@@ -75,26 +75,25 @@ uasort($tasks, function($a, $b){
 			});
 		});
 	</script>
-<!--
-	<link rel="stylesheet" href="reset.css">
--->
+	<!-- <link rel="stylesheet" href="reset.css"> -->
 	<style>
-		body { font-family: sans-serif; background: hsl(0, 0%, 90%); }
+		body { margin: 0; padding: 0; font-family: sans-serif; background: hsl(0, 0%, 90%); }
+		
 		article { position: relative; overflow: hidden; margin: 1em 1em 2em 1em; padding: 0.5em; width: 40em;
 			color: hsl(0, 0%, 25%); background: hsl(0, 0%, 97.5%); border: 1px solid white;
 			border-radius: 5px; box-shadow: 1px 1px 5px hsl(0, 0%, 35%); }
-		header { margin: 0 0 0.5em 0; padding: 0 0 0 47.5px; }
-		header h1 { font-size: 1.5em; }
-		header h1 + p { font-size: 0.77em; margin: 0.33em 0 0 0; color: gray; }
+		/* header { margin: 0 0 0.5em 0; padding: 0 0 0 47.5px; } */
+		header { margin: 0 0 0.75em 0; padding: 0; }
+		header h1 { margin: 0; padding: 0; font-size: 1.5em; line-height: 1; }
+		header h1 + p { font-size: 0.77em; margin: 0.33em 0 0 0; color: gray; line-height: 1; }
 		header p.points { position: absolute; top: 0.5em; left: 0.5em; width: 40px; height: 40px;
+			margin: 0; padding: 0; line-height: 1;
 			background: hsl(0, 0%, 90%); border: 1px solid hsl(0, 0%, 80%); border-radius: 5px; }
 		header p.points span { display: block; margin: 1px 0 -1px 0; text-align: center; font-size: 10px; }
 		header p.points span:first-child { display: block; text-align: center; font-size: 27.5px; }
 		
-		ul, ol { margin: 0.5em 0 0.5em 1.5em; }
-		li { margin: 0.25em 0; }
-		ul { list-style: circle; }
-		ol { list-style: decimal; }
+		ul, ol { margin: 0.5em 0 0.5em 1.5em; padding: 0; }
+		li { margin: 0.25em 0; padding: 0; }
 		
 		a.check { float: left; width: 5em; padding: 0.5em 0.25em;
 			color: hsl(0, 0%, 25%); background-color: hsl(0, 0%, 90%);
@@ -117,7 +116,9 @@ uasort($tasks, function($a, $b){
 		div.console.loading::after { content: 'checking exercise...'; }
 		
 		article.passed { border-color: hsl(120, 50%, 40%); background: hsl(120, 50%, 85%); }
+		/* no highlight of failed stuff, we want to reenforce success, not failure
 		article.failed { border-color: hsl(0, 50%, 40%); background: hsl(0, 50%, 85%); }
+		*/
 	</style>
 </head>
 <body>
@@ -126,8 +127,10 @@ uasort($tasks, function($a, $b){
 <article>
 	<header>
 		<h1><?= h($task['title']) ?></h1>
+		<!--
 		<p>Task: <?= h($task['id']) ?></p>
 		<p class="points"><span><?= h($task['points']) ?></span><span>Punkte</span></p>
+		-->
 	</header>
 	
 	<div><?= Markdown($task['description']) ?></div>
